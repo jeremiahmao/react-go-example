@@ -1,1 +1,1 @@
-https://react-go-example-production.up.railway.app/
+example of a full stack go backend ts frontend app
