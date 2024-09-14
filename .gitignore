@@ -37,6 +37,7 @@ node_modules
 _obj
 _test
 vendor/
+tmp/
 
 # logs
 *.log
