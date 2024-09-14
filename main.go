@@ -26,7 +26,7 @@ func main() {
 	fmt.Println("hello world")
 
 	if os.Getenv("ENV") != "production" {
-		//load .env file if not in production
+		// Load the .env file if not in production
 		err := godotenv.Load(".env")
 		if err != nil {
 			log.Fatal("Error loading .env file:", err)
@@ -55,7 +55,7 @@ func main() {
 	app := fiber.New()
 
 	// app.Use(cors.New(cors.Config{
-	// 	AllowOrigins: "http://localhost:5173, http://127.0.0.1:5173/",
+	// 	AllowOrigins: "http://localhost:5173",
 	// 	AllowHeaders: "Origin,Content-Type,Accept",
 	// }))
 
@@ -65,7 +65,6 @@ func main() {
 	app.Delete("/api/todos/:id", deleteTodo)
 
 	port := os.Getenv("PORT")
-
 	if port == "" {
 		port = "5000"
 	}
@@ -134,7 +133,6 @@ func updateTodo(c *fiber.Ctx) error {
 	update := bson.M{"$set": bson.M{"completed": true}}
 
 	_, err = collection.UpdateOne(context.Background(), filter, update)
-
 	if err != nil {
 		return err
 	}
@@ -159,5 +157,4 @@ func deleteTodo(c *fiber.Ctx) error {
 	}
 
 	return c.Status(200).JSON(fiber.Map{"success": true})
-
 }
